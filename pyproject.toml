@@ -1,7 +1,7 @@
 [project]
 name = "statgis"
 version = "0.1.0"
-description = ""
+description = "Package to geospatial analysis and statistics."
 authors = [
     {name = "Sebástian Andrés Narváez Salcedo",email = "snarvaezwrm@gmail.com"}
 ]
