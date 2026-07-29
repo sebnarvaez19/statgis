@@ -24,3 +24,21 @@ def load_dataset(station_id: int) -> pd.DataFrame:
     df.index.name = None
     df["datetime"] = pd.to_datetime(df["datetime"])
     return df
+
+
+def get_dataset_year(df: pd.DataFrame, year: int | None = None) -> pd.DataFrame:
+    """
+    Get the dataset for a given year.
+
+    Args:
+        df (pd.DataFrame): The dataset for the given station ID.
+        year (int | None, optional): The year to get the dataset for. Defaults to None.
+
+    Returns:
+        pd.DataFrame: The dataset for the given year.
+    """
+    year = check_year(year)
+    df = check_df_integrity(df)
+    df = df.loc[(df["datetime"] >= f"{year}-01-01") & (df["datetime"] <= f"{year}-12-31")].copy()
+    df = remove_feb_29th(df)
+    return df
