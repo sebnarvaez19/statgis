@@ -42,3 +42,27 @@ def get_dataset_year(df: pd.DataFrame, year: int | None = None) -> pd.DataFrame:
     df = df.loc[(df["datetime"] >= f"{year}-01-01") & (df["datetime"] <= f"{year}-12-31")].copy()
     df = remove_feb_29th(df)
     return df
+
+
+def get_probability_dataset(df: pd.DataFrame, year: int | None = None, percentiles: Sequence[float] = DEFAULT_PERCENTILES) -> pd.DataFrame:
+    """
+    Get the probability dataset for a given year.
+
+    Args:
+        df (pd.DataFrame): The dataset for the given station ID.
+        year (int | None, optional): The year to get the dataset for. Defaults to None.
+        percentiles (Sequence[float], optional): The percentiles to get the dataset for. Defaults to DEFAULT_PERCENTILES.
+
+    Returns:
+        pd.DataFrame: The probability dataset for the given year.
+    """
+    year = check_year(year)
+    df = check_df_integrity(df)
+    df["month"], df["day"] = df["datetime"].dt.month, df["datetime"].dt.day
+    df = df.loc[~((df["month"] == 2) & (df["day"] == 29))]
+    df = df.groupby(["month", "day"])["datum"].quantile(percentiles).unstack().reset_index()
+    df = df.drop(columns=["month", "day"])
+    idx = pd.date_range(f"{year}-01-01", f"{year}-12-31", freq="D")
+    if len(idx) > 365:
+        idx = idx.drop([f"{year}-02-29"])
+    return df.set_index(idx)
