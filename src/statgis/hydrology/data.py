@@ -16,7 +16,7 @@ def load_dataset(station_id: int) -> pd.DataFrame:
     Returns:
         pd.DataFrame: The dataset for the given station ID.
     """
-    url = f"{API_URL}/datasets/{station_id}"
+    url = f"{API_URL}/hidrometorological/datasets/{station_id}"
     response = requests.get(url)
     if response.status_code != 200:
         raise RuntimeError(response.text)
