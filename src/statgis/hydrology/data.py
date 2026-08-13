@@ -38,6 +38,7 @@ def get_dataset_year(df: pd.DataFrame, year: int | None = None) -> pd.DataFrame:
         pd.DataFrame: The dataset for the given year.
     """
     year = check_year(year)
+    df = df.copy()
     df = check_df_integrity(df)
     df = df.loc[(df["datetime"] >= f"{year}-01-01") & (df["datetime"] <= f"{year}-12-31")].copy()
     df = remove_feb_29th(df)
@@ -57,6 +58,7 @@ def get_probability_dataset(df: pd.DataFrame, year: int | None = None, percentil
         pd.DataFrame: The probability dataset for the given year.
     """
     year = check_year(year)
+    df = df.copy()
     df = check_df_integrity(df)
     df["month"], df["day"] = df["datetime"].dt.month, df["datetime"].dt.day
     df = df.loc[~((df["month"] == 2) & (df["day"] == 29))]
