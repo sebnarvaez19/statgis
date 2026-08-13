@@ -1,6 +1,9 @@
 import datetime
 
+import matplotlib.pyplot as plt
 import pandas as pd
+
+from matplotlib.axes import Axes
 
 
 def check_year(year: int | None) -> int:
@@ -26,3 +29,12 @@ def remove_feb_29th(df: pd.DataFrame) -> pd.DataFrame:
     Remove the 29th of February from the dataset.
     """
     return df.loc[~((df["datetime"].dt.month == 2) & (df["datetime"].dt.day == 29))].copy()
+
+
+def check_ax(ax: Axes | None) -> Axes:
+    """
+    Check the axes.
+    """
+    if ax is None:
+        ax = plt.subplots()[1]
+    return ax
