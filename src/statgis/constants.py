@@ -29,3 +29,13 @@ BOCATOMAS_CANAL_DIQUE: Final[list[tuple[str, float]]] = [
     ("Repelón", 30.710),
     ("Villa Rosa", 31.300),
 ]
+
+ESTACIONES_RÍO_MAGDALENA: Final[list[tuple[str, float]]] = [
+    ("CALAMAR", 109.5),
+    ("SITIO NUEVO", 35.71),
+    ("TEBSA", 20.00),
+]
+
+ESTACIONES_CANAL_DIQUE: Final[list[tuple[str, float]]] = [
+    ("CALAMAR", 0.0),
+]
