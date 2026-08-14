@@ -14,8 +14,8 @@ def rio_magdalena_sitio_nuevo(l: float, limit: float = 0.230) -> float:
         return limit
 
 
-def canal_dique_villa_rosa(l: float, limit: float = 3.00) -> float:
-    predicted_l = -0.052 * l + l
+def canal_dique_villa_rosa(l: float, limit: float = 0.10) -> float:
+    predicted_l = -0.18 * l + l
     if predicted_l > limit:
         return predicted_l
     else:
