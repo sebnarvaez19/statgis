@@ -27,7 +27,7 @@ def time_stripe(df: pd.DataFrame, year: int | None = None, ax: Axes | None = Non
     """
     ax = validation.check_ax(ax)
     df_prob = data.get_probability_dataset(df, year=year)
-    ax.fill_between(df_prob.index, df_prob[0.0], df_prob[1.0], facecolor="C0", alpha=0.3)
+    ax.fill_between(df_prob.index, df_prob[0.0], df_prob[1.0], facecolor="C0", alpha=0.3, label="Variabilidad nivel")
     ax.fill_between(df_prob.index, df_prob[0.1], df_prob[0.9], facecolor="C0", alpha=0.3)
     ax.fill_between(df_prob.index, df_prob[0.25], df_prob[0.75], facecolor="C0", alpha=0.3)
     ax.plot(df_prob.index, df_prob[0.5], color="C0")
@@ -42,7 +42,7 @@ def time_stripe(df: pd.DataFrame, year: int | None = None, ax: Axes | None = Non
     return ax
 
 
-def plot_year(df_year: pd.DataFrame, ax: Axes | None = None) -> Axes:
+def plot_year(df_year: pd.DataFrame, ax: Axes | None = None, label: str | None = None) -> Axes:
     """
     Plot the year.
 
@@ -52,6 +52,8 @@ def plot_year(df_year: pd.DataFrame, ax: Axes | None = None) -> Axes:
         The dataset.
     ax : Axes | None, optional
         The axes to plot on, by default None.
+    label : str | None, optional
+        The label to plot, by default None.
 
     Returns
     -------
@@ -59,7 +61,7 @@ def plot_year(df_year: pd.DataFrame, ax: Axes | None = None) -> Axes:
         The axes with the year plotted.
     """
     ax = validation.check_ax(ax)
-    ax.plot(df_year["datetime"], df_year["datum"], color="black")
+    ax.plot(df_year["datetime"], df_year["datum"], color="black", label=label)
     return ax
 
 
@@ -91,8 +93,9 @@ def magdalena_river_backwater(ax: Axes | None = None) -> Axes:
         predict.rio_magdalena_tebsa_bquilla(df.sort_values("datetime").iloc[-1]["datum"]),
         0,
     ])
-    for name, distance in constants.BOCATOMAS_RÍO_MAGDALENA:
-        ax.axvline(x=distance, color="gray", linestyle="--", linewidth=1)
+    for i, (name, distance) in enumerate(constants.BOCATOMAS_RÍO_MAGDALENA):
+        label = None if i != 0 else "Bocatomas"
+        ax.axvline(x=distance, color="gray", linestyle="--", linewidth=1, label=label)
         ax.text(x=distance, y=6, s=name, rotation=90, ha="right", va="center", fontsize="small")
     x_stations = list(map(lambda x: x[1], constants.ESTACIONES_RÍO_MAGDALENA))
     ax.scatter(
