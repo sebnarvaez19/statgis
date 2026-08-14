@@ -1,5 +1,5 @@
 [project]
-name = "statgis"
+name = "cra_risk_management"
 version = "0.1.0"
 description = "Package to geospatial analysis and statistics."
 authors = [
@@ -8,13 +8,13 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pandas (>=3.0.5,<4.0.0)",
-    "statsmodels (>=0.14.6,<0.15.0)",
-    "matplotlib (>=3.11.1,<4.0.0)"
+    "pandas (>=3.0.0)",
+    "statsmodels (>=0.14.0)",
+    "matplotlib (>=3.11.0)"
 ]
 
 [tool.poetry]
-packages = [{include = "statgis", from = "src"}]
+packages = [{include = "cra_risk_management", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -22,5 +22,5 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 dev = [
-    "jupyterlab (>=4.6.2,<5.0.0)"
+    "jupyterlab (>=4.6.2)"
 ]
