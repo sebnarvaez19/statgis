@@ -2,8 +2,8 @@ import requests
 from typing import Sequence
 
 import pandas as pd
-from statgis.constants import API_URL, DEFAULT_PERCENTILES
-from statgis.validation import check_year, check_df_integrity, remove_feb_29th
+from cra_risk_management.constants import API_URL, DEFAULT_PERCENTILES
+from cra_risk_management.validation import check_year, check_df_integrity, remove_feb_29th
 
 
 def load_dataset(station_id: int) -> pd.DataFrame:

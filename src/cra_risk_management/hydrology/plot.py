@@ -4,9 +4,9 @@ import pandas as pd
 import numpy as np
 from matplotlib.axes import Axes
 
-from statgis import constants, validation
-from statgis.hydrology import data
-from statgis.hydrology import predict
+from cra_risk_management import constants, validation
+from cra_risk_management.hydrology import data
+from cra_risk_management.hydrology import predict
 
 
 def time_stripe(df: pd.DataFrame, year: int | None = None, ax: Axes | None = None) -> Axes:
