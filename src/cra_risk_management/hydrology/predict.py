@@ -19,7 +19,7 @@ def rio_magdalena_tebsa_bquilla(l: float, limit: float = 0.05) -> float:
         return predicted_l
     else:
         return limit
-    
+
 
 def rio_magdalena_sitio_nuevo(l: float, limit: float = 0.230) -> float:
     """
@@ -64,4 +64,4 @@ def canal_dique_villa_rosa(l: float, limit: float = 0.10) -> float:
     if predicted_l > limit:
         return predicted_l
     else:
-        return limit
+        return limit
